@@ -1,11 +1,16 @@
+//importing useState hook
 import { useState } from "react";
+
+//functional component to add album
 function AddAlbum(props) {
+  //using state to make dummy calls
   let [userId, setUserId] = useState("");
   let [photoNo, setPhotoNo] = useState("");
   let [title, setTitle] = useState("");
+  //receiving data through props
   let { albums, setAlbums } = props;
 
-
+  //handle add function
   const handleAddAlbum = (e) => {
     e.preventDefault();
     const currAlbum = {
@@ -22,12 +27,16 @@ function AddAlbum(props) {
     })
       .then((response) => response.json())
     // .then((json) => console.log(json));
+    //using unshift to add album at the start
     albums.unshift(currAlbum);
+    //setting state components
     setAlbums(albums);
     setUserId("");
     setPhotoNo("");
     setTitle("");
   };
+
+  //returning form comp and add album button
   return (
     <div className="addAlbum">
       <h1>Create Album</h1>
@@ -60,4 +69,6 @@ function AddAlbum(props) {
     </div>
   );
 }
+
+//exporting addalbum component
 export default AddAlbum;
